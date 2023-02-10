@@ -34,7 +34,7 @@ const Registration = () => {
             <h1>Registration</h1>
             {error && <p>{error}</p>}
             <Formik
-                initialValues={{ name: '', email: '', password: '', photo: '', avatar: '' }}
+                initialValues={{ name: '', email: '', password: '', photo: ''}}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
