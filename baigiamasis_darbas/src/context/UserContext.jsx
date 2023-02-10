@@ -1,23 +1,24 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
-const UserContext = createContext();
+import data from '../components/data/data.json';
 
-const UserProvider = (props) => {
-    const [userData, setUserData] = useState([]);
+const UserContext = createContext({
+  users: [],
+});
 
-    useEffect(() => {
-        fetch('data.json')
-            .then((response) => response.json())
-            .then((data) => setUserData(data))
-            .catch((error) => console.error(error));
-    }, []);
+const UserProvider = ({ children }) => {
+  const [users, setUsers] = useState(data.users);
 
-    return (
-        <UserContext.Provider value={userData}>
-            {props.children}
-        </UserContext.Provider>
-    );
+  const addUser = (user) => {
+    setUsers([...users, user]);
+  };
+
+  const value = { users, addUser };
+
+  return <UserContext.Provider value={value}>
+    {children}
+  </UserContext.Provider>;
 };
 
-export { UserProvider }
-export default UserContext
+export { UserProvider };
+export default UserContext;
