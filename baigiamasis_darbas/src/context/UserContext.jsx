@@ -1,23 +1,51 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-import data from '../components/data/data.json';
+const UserContext = createContext();
 
-const UserContext = createContext({
-  users: [],
-});
+const UserProvider = (props) => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState(data.users);
+  useEffect(() => {
+    setLoading(true);
+    fetch('http://localhost:5000/users')
+      .then(response => response.json())
+      .then(data => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
 
-  const addUser = (user) => {
-    setUsers([...users, user]);
+  const addUser = (name, email, password) => {
+    setLoading(true);
+    const newUser = { id: Date.now(), name, email, password };
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUsers([...users, data]);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        setLoading(false);
+      });
   };
 
-  const value = { users, addUser };
-
-  return <UserContext.Provider value={value}>
-    {children}
-  </UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ users, loading, addUser }}>
+      {props.children}
+    </UserContext.Provider>
+  );
 };
 
 export { UserProvider };

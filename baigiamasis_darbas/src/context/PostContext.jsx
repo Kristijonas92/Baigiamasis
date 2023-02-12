@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 const PostContext = createContext();
 
@@ -8,8 +8,7 @@ const PostContextProvider = (props) => {
 
   useEffect(() => {
     setLoading(true);
-    // Fetch data from JSON file
-    fetch('http://localhost:7000/posts')
+    fetch('http://localhost:5000/posts')
       .then(response => response.json())
       .then(data => {
         setPosts(data);
@@ -23,9 +22,8 @@ const PostContextProvider = (props) => {
 
   const addPost = (title, body) => {
     setLoading(true);
-    // Make API call to create a new post
     const newPost = { id: posts.length + 1, title, body };
-    fetch('http://localhost:7000/posts', {
+    fetch('http://localhost:5000/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,9 +43,8 @@ const PostContextProvider = (props) => {
 
   const editPost = (id, title, body) => {
     setLoading(true);
-    // Make API call to update the post
     const editedPost = { id, title, body };
-    fetch(`http://localhost:7000/posts/${id}`, {
+    fetch(`http://localhost:5000/posts/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -68,8 +65,7 @@ const PostContextProvider = (props) => {
 
   const deletePost = (id) => {
     setLoading(true);
-    // Make API call to delete the post
-    fetch(`http://localhost:7000/posts/${id}`, {
+    fetch(`http://localhost:5000/posts/${id}`, {
       method: 'DELETE',
     })
       .then(() => {
@@ -82,15 +78,13 @@ const PostContextProvider = (props) => {
         setLoading(false);
       });
   };
-
+  
   const likePost = (id) => {
     setLoading(true);
-    // Make API call to like the post
     const likedPost = posts.find((post) => post.id === id);
     likedPost.likes = likedPost.likes ? likedPost.likes + 1 : 1;
 
-    // Perform the actual API call
-    fetch(`http://localhost:7000/questions/${id}/like`, {
+    fetch(`http://localhost:5000/posts/${id}/likes`, {
       method: 'POST'
     })
       .then(response => response.json())
@@ -107,12 +101,10 @@ const PostContextProvider = (props) => {
 
   const dislikePost = (id) => {
     setLoading(true);
-    // Make API call to dislike the post
     const dislikedPost = posts.find((post) => post.id === id);
     dislikedPost.dislikes = dislikedPost.dislikes ? dislikedPost.dislikes + 1 : 1;
-
-    // Perform the actual API call
-    fetch(`http://localhost:7000/questions/${id}/dislike`, {
+  
+    fetch(`http://localhost:5000/posts/${id}/dislikes`, {
       method: 'POST'
     })
       .then(response => response.json())
@@ -126,7 +118,14 @@ const PostContextProvider = (props) => {
         setLoading(false);
       });
   };
+  
+
+  return (
+    <PostContext.Provider value={{ posts, loading, addPost, editPost, deletePost, likePost, dislikePost }}>
+      {props.children}
+    </PostContext.Provider>
+  );
 };
 
-export {PostContextProvider};
+export { PostContextProvider };
 export default PostContext;
