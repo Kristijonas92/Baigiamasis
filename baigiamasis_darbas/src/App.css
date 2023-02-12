@@ -1,0 +1,142 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: lightblue;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    width: 20%;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: lightblue;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: lightblue;
+}
+
+footer p {
+    color: white;
+    font-size: 16px;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #555;
+}
+
+.register-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffc107;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.register-link:hover {
+    background-color: #e6ac00;
+}
+
+.post {
+    padding: 20px;
+}
+
+.sort-options {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sort-options p {
+    margin-right: 10px;
+}
+
+.filter-options {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-options p {
+    margin-right: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.posts {
+    list-style: none;
+    padding: 0;
+}
+
+.post-item {
+    border-top: 1px solid #ccc;
+    padding: 20px 0;
+}
