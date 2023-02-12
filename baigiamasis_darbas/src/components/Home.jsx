@@ -24,7 +24,6 @@ const Home = () => {
           </ul>
         </nav>
         <img src={GreatPosts} alt="Logo" />
-        <h1>GreatPosts</h1>
       </header>
       {isLoggedIn && (
         <Post />
