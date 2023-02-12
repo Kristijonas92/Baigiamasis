@@ -6,6 +6,8 @@
       "body": "Can you explain what React is and how it works?",
       "created_at": "2022-01-01T00:00:00.000Z",
       "author_id": 1,
+      "likes": 10,
+      "dislikes": 2,
       "answers": [
         {
           "id": 1,
@@ -13,19 +15,17 @@
           "created_at": "2022-01-02T00:00:00.000Z",
           "author_id": 2,
           "likes": 5,
-          "dislikes": 2
+          "dislikes": 1
         },
         {
           "id": 2,
           "body": "React allows you to create reusable UI components.",
           "created_at": "2022-01-03T00:00:00.000Z",
           "author_id": 3,
-          "likes": 3,
-          "dislikes": 1
+          "likes": 8,
+          "dislikes": 0
         }
-      ],
-      "likes": 2,
-      "dislikes": 1
+      ]
     },
     {
       "id": 2,
@@ -33,9 +33,18 @@
       "body": "Can you explain what Redux is and how it works with React?",
       "created_at": "2022-02-01T00:00:00.000Z",
       "author_id": 1,
-      "answers": [],
-      "likes": 0,
-      "dislikes": 0
+      "likes": 15,
+      "dislikes": 5,
+      "answers": []
+    },
+    {
+      "id": 3,
+      "title": "bhttyj",
+      "body": "thvjytvty",
+      "created_at": "2022-03-01T00:00:00.000Z",
+      "author_id": 2,
+      "likes": 2,
+      "dislikes": 1
     }
   ],
   "users": [
@@ -51,14 +60,14 @@
       "name": "Jane Doe",
       "email": "janedoe@example.com",
       "password": "password456",
-      "photo_url": "https://example.com/jane_doe_avatar.png"
+      "photo_url": "https://www.disneyplusinformer.com/wp-content/uploads/2022/03/Turning-Red-Profile-Avatar.png"
     },
     {
       "id": 3,
       "name": "Bob Smith",
       "email": "bobsmith@example.com",
       "password": "password789",
-      "photo_url": "https://example.com/bob_smith_avatar.png"
+      "photo_url": "https://www.disneyplusinformer.com/wp-content/uploads/2022/03/Turning-Red-Profile-Avatar.png"
     }
   ]
 }
