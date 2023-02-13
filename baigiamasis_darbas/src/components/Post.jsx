@@ -82,23 +82,33 @@ const Post = () => {
           {sortPosts(filteredPosts).map((post) => (
             <ul>
               <li key={post.id} className="post-item">
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-                <p>{post.created_at}</p>
-                <p>Likes:{post.likes || 0}</p>
-                <p>Dislikes{post.dislikes || 0}</p>
-                <p>{post.answers && post.answers.map((answer) => (
-                  <li key={answer.id}>
-                    <p>{answer.body}</p>
-                    <p>{answer.created_at}</p>
-                    <p>Likes:{answer.likes}</p>
-                    <p>Dislikes{answer.dislikes}</p>
-                  </li>
-                ))}</p>
-                <button onClick={(e) => handleEdit(e, post.id)}>Edit</button>
-                <button onClick={() => deletePost(post.id)}>Delete</button>
-                <button onClick={() => likePost(post.id)}>Like</button>
-                <button onClick={() => dislikePost(post.id)}>Dislike</button>
+                {post.editing ? (
+                  <form onSubmit={(e) => handleEdit(e, post.id)}>
+                    <input type="text" name="title" defaultValue={post.title} />
+                    <textarea name="body" defaultValue={post.body} />
+                    <button type="submit">Save</button>
+                  </form>
+                ) : (
+                  <>
+                    <h3>{post.title}</h3>
+                    <p>{post.body}</p>
+                    <p>{post.created_at}</p>
+                    <p>Likes:{post.likes || 0}</p>
+                    <p>Dislikes{post.dislikes || 0}</p>
+                    <p>{post.answers && post.answers.map((answer) => (
+                      <li key={answer.id}>
+                        <p>{answer.body}</p>
+                        <p>{answer.created_at}</p>
+                        <p>Likes:{answer.likes}</p>
+                        <p>Dislikes{answer.dislikes}</p>
+                      </li>
+                    ))}</p>
+                    <button onClick={() => editPost(post.id)}>Edit</button>
+                    <button onClick={() => deletePost(post.id)}>Delete</button>
+                    <button onClick={() => likePost(post.id)}>Like</button>
+                    <button onClick={() => dislikePost(post.id)}>Dislike</button>
+                  </>
+                )}
               </li>
             </ul>
           ))}
