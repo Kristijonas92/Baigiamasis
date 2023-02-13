@@ -12,7 +12,7 @@ const Post = () => {
     event.preventDefault();
     const title = event.target.elements.title.value;
     const body = event.target.elements.body.value;
-    const created_at = new Date().toISOString();
+    const created_at = new Date();
     addPost(title, body, created_at);
   };
 
@@ -103,7 +103,7 @@ const Post = () => {
                         <p>Dislikes{answer.dislikes}</p>
                       </li>
                     ))}</p>
-                    <button onClick={() => editPost(post.id)}>Edit</button>
+                    <button onClick={() => editPost(post.id, post.title, post.body)}>Edit</button>
                     <button onClick={() => deletePost(post.id)}>Delete</button>
                     <button onClick={() => likePost(post.id)}>Like</button>
                     <button onClick={() => dislikePost(post.id)}>Dislike</button>

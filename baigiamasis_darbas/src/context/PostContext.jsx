@@ -51,16 +51,16 @@ const PostContextProvider = (props) => {
       },
       body: JSON.stringify(editedPost),
     })
-      .then(response => response.json())
-      .then(data => {
-        const updatedPosts = posts.map((post) => (post.id === id ? data : post));
+      // .then(response => response.json())
+      // .then(data => {
+        const updatedPosts = posts.map((post) => (post.id === id ? editedPost : post));
         setPosts(updatedPosts);
         setLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setLoading(false);
-      });
+      // })
+      // .catch(error => {
+      //   console.error(error);
+      //   setLoading(false);
+      // });
   };
 
   const deletePost = (id) => {

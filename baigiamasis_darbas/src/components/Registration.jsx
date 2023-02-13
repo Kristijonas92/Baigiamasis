@@ -6,7 +6,7 @@ import GreatPosts from '../img/GreatPosts.png'
 
 const Registration = () => {
     const [error, setError] = useState('');
-    const { users } = useContext(UserContext);
+    const { users, addUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState({
         name: '',
@@ -21,7 +21,7 @@ const Registration = () => {
         email: Yup.string().email('Invalid email').required('Email is required'),
         password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
         passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Password confirmation is required'),
-        photo: Yup.string().url('Invalid URL').required('Photo URL is required'),
+        photo_url: Yup.string().url('Invalid URL').required('Photo URL is required'),
     });
 
     const handleChange = event => {
@@ -34,24 +34,26 @@ const Registration = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        validationSchema
-            .validate(formValues, { abortEarly: false })
-            .then(validFormValues => {
-                users(validFormValues)
-                    .then(() => {
-                        navigate('/');
-                    })
-                    .catch((err) => {
-                        setError(err.message);
-                    });
-            })
-            .catch(errors => {
-                const validationErrors = {};
-                errors.inner.forEach(error => {
-                    validationErrors[error.path] = error.message;
-                });
-                setErrors(validationErrors);
-            });
+        addUser(formValues.name, formValues.email, formValues.password, formValues.photo_url);
+
+        // validationSchema
+        //     .validate(formValues, { abortEarly: false })
+        //     .then(validFormValues => {
+        //         users(validFormValues)
+        //             .then(() => {
+        //                 navigate('/');
+        //             })
+        //             .catch((err) => {
+        //                 setError(err.message);
+        //             });
+        //     })
+        //     .catch(errors => {
+        //         const validationErrors = {};
+        //         errors.inner.forEach(error => {
+        //             validationErrors[error.path] = error.message;
+        //         });
+        //         setErrors(validationErrors);
+        //     });
     };
 
     const [errors, setErrors] = useState({});
@@ -60,7 +62,6 @@ const Registration = () => {
         <div>
             <header>
                 <nav>
-                    <Link to="/">Home</Link>
                     <Link to="/register">Register</Link>
                     <Link to="/login">LogIn</Link>
                 </nav>

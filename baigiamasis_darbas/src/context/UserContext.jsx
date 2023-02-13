@@ -20,9 +20,9 @@ const UserProvider = (props) => {
       });
   }, []);
 
-  const addUser = (name, email, password) => {
+  const addUser = (name, email, password, photo_url) => {
     setLoading(true);
-    const newUser = { id: Date.now(), name, email, password };
+    const newUser = { id: Date.now(), name, email, password, photo_url };
     fetch('http://localhost:5000/users', {
       method: 'POST',
       headers: {
